@@ -128,3 +128,5 @@ dmypy.json
 variables/
 
 *.pb
+
+.DS_Store
