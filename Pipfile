@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 tensorflow = "*"
 pillow = "*"
+moviepy = "*"
 
 [requires]
 python_version = "3.8"
