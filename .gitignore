@@ -130,3 +130,5 @@ variables/
 *.pb
 
 .DS_Store
+
+*.h5
