@@ -3,15 +3,6 @@ from tensorflow.keras.layers import LeakyReLU
 from pathlib import Path
 import numpy as np
 
-SAVE_GENERATOR_IMAGES = False
-CONVERT_TO_GRAY = True
-IMG_PATH = '/Users/christiancoenen/Google Drive/Social Media Automation/datasets/gameDetection'
-GAME_NAME = 'fortnite'
-EPOCHS = 3
-BATCH_SIZE = 16
-INPUT_SIZE = (224, 224)
-
-
 class GameDetection:
 
     def __init__(self,
@@ -22,9 +13,11 @@ class GameDetection:
                  save_generated_images=False,
                  convert_to_gray=False
                  ):
+        self.batch_size = batch_size
+        self.game_name = game_name
         self.convert_to_gray = convert_to_gray
         self.GENERATOR_IMAGES_FOLDER_NAME = 'gen'
-        Path(self.GENERATOR_IMAGES_FOLDER_NAME).mkdir(parents=True, exist_ok=True) if SAVE_GENERATOR_IMAGES else None
+        Path(self.GENERATOR_IMAGES_FOLDER_NAME).mkdir(parents=True, exist_ok=True) if save_generated_images else None
 
         self.data_gen = tf.keras.preprocessing.image.ImageDataGenerator(
             validation_split=0.2,
@@ -94,12 +87,12 @@ class GameDetection:
     def train(self, epochs):
         # train the model
         self.model.fit(self.train_generator,
-                       steps_per_epoch=self.train_generator.samples // BATCH_SIZE,
+                       steps_per_epoch=self.train_generator.samples // self.batch_size,
                        validation_data=self.validation_generator,
-                       validation_steps=self.validation_generator.samples // BATCH_SIZE,
+                       validation_steps=self.validation_generator.samples // self.batch_size,
                        epochs=epochs)
 
-        self.model.save(f"game_detection_{GAME_NAME}.h5")
+        self.model.save(f"game_detection_{self.game_name}.h5")
 
     def preprocessor(self, image):
         if self.convert_to_gray:
@@ -119,11 +112,11 @@ def preprocessor(image, convert_to_gray):
     return image
 
 
-m = GameDetection(game_name='fortnite',
+m = GameDetection(game_name='leagueoflegends',
                   dataset_path='/Users/christiancoenen/Google Drive/Social Media Automation/datasets/gameDetection',
                   input_size=(224, 224),
                   batch_size=16,
                   save_generated_images=False,
                   convert_to_gray=False
                   )
-m.train(epochs=3)
+m.train(epochs=2)
