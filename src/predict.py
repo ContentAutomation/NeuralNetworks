@@ -1,6 +1,7 @@
-import tensorflow as tf
-import numpy as np
 from pathlib import Path
+
+import numpy as np
+import tensorflow as tf
 from moviepy.editor import *
 
 # Adjust to use a different model/video file

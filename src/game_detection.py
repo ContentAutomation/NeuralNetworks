@@ -1,7 +1,8 @@
+from pathlib import Path
+
+import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import LeakyReLU
-from pathlib import Path
-import numpy as np
 
 
 class GameDetection:

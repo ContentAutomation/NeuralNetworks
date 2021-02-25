@@ -1,6 +1,7 @@
-import cv2
 import os
 from pathlib import Path
+
+import cv2
 
 ROOT_DIR = Path(__file__).parent.absolute().parent
 
