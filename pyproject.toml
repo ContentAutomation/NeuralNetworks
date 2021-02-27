@@ -2,7 +2,7 @@
 name = "neuralnetworks"
 version = "0.1.0"
 description = ""
-authors = ["Christian Coenen <coenen.christian@outlook.com>"]
+authors = ["Christian Coenen, Moritz Mundhenke, Luca Schilling"]
 
 [tool.poetry.dependencies]
 python = "^3.8.3"
