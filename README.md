@@ -18,7 +18,7 @@
 <hr />
 
 <p align="center">
-    <img src="https://contentautomation.s3.eu-central-1.amazonaws.com/ingame_detection.png" alt="Ingame Detection" width="800"/></a>
+    <img src="https://contentautomation.s3.eu-central-1.amazonaws.com/detect_ingame.png" alt="Ingame Detection" width="1200"/></a>
 </p>
 
 
