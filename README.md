@@ -17,6 +17,10 @@
 </p>
 <hr />
 
+<p align="center">
+    <img src="https://contentautomation.s3.eu-central-1.amazonaws.com/ingame_detection.png" alt="Ingame Detection" width="800"/></a>
+</p>
+
 
 ## Setup
 This project requires [Poetry](https://python-poetry.org/) to install the required dependencies.
