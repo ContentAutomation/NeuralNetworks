@@ -55,9 +55,9 @@ Let's assume you want to create a new model for the game Dota2. The following st
 2. Split the clips into images via ```video2images.py```
 3. Create the following folder structure
 ```bash
-.
+...
 │
-└───dataset 
+└───anyFolderName
     │
     └───dota2
     └───nogame
@@ -70,7 +70,7 @@ Let's assume you want to create a new model for the game Dota2. The following st
 m = GameDetection(
     model_name="ResNet50",
     game_name="dota2",
-    dataset_path="/datasets",
+    dataset_path="---PATH TO 'anyFolderName'---",
     input_size=(224, 224),
     batch_size=16,
     save_generated_images=False,
