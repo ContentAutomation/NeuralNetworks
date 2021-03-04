@@ -52,6 +52,9 @@ that are not ingame (e.g. Lobby, Queue, ...)
 ## Creating a new model for a game
 Let's assume you want to create a new model for the game Dota2. The following steps have to be performed:
 1. Download clips for Dota2 that are both ingame and not ingame (recommended source: Twitch)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HINT: You can download clips manually or by creating a compilation with [TwitchCompilationCreator](https://github.com/ContentAutomation/TwitchCompilationCreator) 
+
 2. Split the clips into images via ```video2images.py```
 3. Create the following folder structure
 ```bash
