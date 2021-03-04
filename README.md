@@ -48,3 +48,31 @@ and a video clip that should be analyzed.
 This script is used to train a neural network (e.g. create a model) on a given dataset.
 If enough data is present, the neural network will learn to distinguish Ingame clips from clips
 that are not ingame (e.g. Lobby, Queue, ...)
+
+## Creating a new model for a game
+Let's assume you want to create a new model for the game Dota2. The following steps have to be performed:
+1. Download clips for Dota2 that are both ingame and not ingame (recommended source: Twitch)
+2. Split the clips into images via ```video2images.py```
+3. Create the following folder structure
+```bash
+anyFolderName 
+│
+└───gamename
+└───nogame
+```
+4. Sort the clips from step 1 into those folders depending on if they are ingame or not
+5. Create a ```main.py``` file in ```./src/``` to initialize a ```GameDetection``` object, then run it (see example below) 
+6. Test the created model on a few example clips using ```predict.py``` to verify its accuracy
+```python
+# For more information about the parameters, check out game_detection.py
+m = GameDetection(
+    model_name="ResNet50",
+    game_name="--REPLACE---",
+    dataset_path="---REPLACE---",
+    input_size=(224, 224),
+    batch_size=16,
+    save_generated_images=False,
+    convert_to_gray=False,
+)
+m.train(epochs=2)
+```
