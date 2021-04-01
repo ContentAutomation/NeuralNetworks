@@ -12,10 +12,16 @@ ROOT_DIR = Path(__file__).parent.absolute().parent
 VIDEO_PATH = ROOT_DIR.joinpath(f"assets/videos/{VIDEO_NAME}")
 MODEL_PATH = ROOT_DIR.joinpath(f"models/{MODEL_NAME}")
 
-model = tf.keras.models.load_model(MODEL_PATH)
+try:
+    model = tf.keras.models.load_model(MODEL_PATH)
+except IOError:
+    raise FileNotFoundError(f"No Model found at {MODEL_PATH}. You can download a test model from https://github.com/ContentAutomation/NeuralNetworks/releases/latest")
 
 # VideoFileClip can only handle string as path (not PosixPath objects)
-clip = VideoFileClip(str(VIDEO_PATH))
+try:
+    clip = VideoFileClip(str(VIDEO_PATH))
+except IOError:
+    raise FileNotFoundError(f"No Video found at {VIDEO_PATH}. You can download a test video from https://github.com/ContentAutomation/NeuralNetworks/releases/latest")
 
 frames = []
 # Check one frame each second except for the first one (e.g. 9 checks for a 10s video)
