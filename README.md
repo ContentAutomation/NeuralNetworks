@@ -72,6 +72,8 @@ Let's assume you want to create a new model for the game Dota2. The following st
 4. Sort the clips from step 1 into those folders depending on if they are ingame or not
 5. Create a ```main.py``` file in ```./src/``` to initialize a ```GameDetection``` object, then run it (see example below) 
 6. Test the created model on a few example clips using ```predict.py``` to verify its accuracy
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: The number of images in the 'gamename' or 'nogame' folder has to be greater than or equal to the defined batch size
 ```python
 # For more information about the parameters, check out game_detection.py
 m = GameDetection(
