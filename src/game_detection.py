@@ -132,7 +132,7 @@ Please fill 'game_name' and 'dataset_path' accordingly before running it!
 """
 m = GameDetection(
     model_name="ResNet50",
-    game_name="--REPLACE---",
+    game_name="---REPLACE---",
     dataset_path="---REPLACE---",
     input_size=(224, 224),
     batch_size=16,
