@@ -1,12 +1,14 @@
+from pathlib import Path
+
+import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import LeakyReLU
-from pathlib import Path
-import numpy as np
 
 
 class GameDetection:
     def __init__(
         self,
+        model_name,
         game_name,
         dataset_path,
         input_size,
@@ -14,6 +16,21 @@ class GameDetection:
         save_generated_images=False,
         convert_to_gray=False,
     ):
+        """
+        Classification Network that determines whether clips are ingame or not.
+
+        :param game_name: The name of the game that the model is trained on.
+                          The 'dataset_path' must contain a subfolder with the 'game_name' containing the ingame images!
+        :param dataset_path: Path to the folder that contains two sub folders containing the images.
+                             1st sub folder must have the same name as the given 'game_name' (contains ingame images)
+                             2nd sub folder must be named 'nogame' and should contain the images that are NOT ingame
+        :param input_size: The size to which the dataset images are scaled to (Recommended: 224, 224)
+        :param batch_size: Determines how many images are used per backpropagation step.
+        :param save_generated_images: Whether to save images that are fed into the neural network.
+                                      This might be useful when applying data augmentation!
+        :param convert_to_gray: Whether the images are converted to grayscale before feeding into the neural network!
+        """
+        self.model_name = model_name
         self.batch_size = batch_size
         self.game_name = game_name
         self.convert_to_gray = convert_to_gray
@@ -62,9 +79,15 @@ class GameDetection:
         self.model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
     def create_model(self):
-        base_model = tf.keras.applications.ResNet50(include_top=False, weights="imagenet")
-        # base_model = tf.keras.applications.VGG16(include_top=False, weights="imagenet")
-        # base_model = tf.keras.applications.InceptionV3(include_top=False, weights="imagenet")
+        if self.model_name == "ResNet50":
+            base_model = tf.keras.applications.ResNet50(include_top=False, weights="imagenet")
+        elif self.model_name == "VGG16":
+            base_model = tf.keras.applications.VGG16(include_top=False, weights="imagenet")
+        elif self.model_name == "InceptionV3":
+            base_model = tf.keras.applications.InceptionV3(include_top=False, weights="imagenet")
+        else:
+            raise ValueError("Invalid model name! Please choose from: 'ResNet50, VGG16, InceptionV3'")
+
         for layer in base_model.layers:
             layer.trainable = False
 
@@ -98,25 +121,19 @@ class GameDetection:
 
     def preprocessor(self, image):
         if self.convert_to_gray:
-            image = rgb2gray(image)
+            image = np.dot(image[..., :3], [0.2989, 0.5870, 0.1140])
             image = np.repeat(image[..., np.newaxis], 3, -1)
         return image
 
 
-def rgb2gray(rgb):
-    return np.dot(rgb[..., :3], [0.2989, 0.5870, 0.1140])
-
-
-def preprocessor(image, convert_to_gray):
-    if convert_to_gray:
-        image = rgb2gray(image)
-        image = np.repeat(image[..., np.newaxis], 3, -1)
-    return image
-
-
+"""
+Example code to train a model.
+Please fill 'game_name' and 'dataset_path' accordingly before running it!
+"""
 m = GameDetection(
-    game_name="leagueoflegends",
-    dataset_path="/Users/christiancoenen/Google Drive/Social Media Automation/datasets/gameDetection",
+    model_name="ResNet50",
+    game_name="---REPLACE---",
+    dataset_path="---REPLACE---",
     input_size=(224, 224),
     batch_size=16,
     save_generated_images=False,
