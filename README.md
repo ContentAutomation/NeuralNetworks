@@ -16,6 +16,12 @@
         <a href="https://github.com/MorMund">Moritz M.</a>,
         <a href="https://github.com/lucaSchilling">Luca S.</a>
     </i>
+    <br />
+    <i><b>Related Projects</b>:
+        <a href="https://github.com/ContentAutomation/TwitchCompilationCreator">Twitch Compilation Creator</a>,
+        <a href="https://github.com/ContentAutomation/YouTubeUploader">YouTube Uploader</a>,
+        <a href="https://github.com/ContentAutomation/YouTubeWatcher">YouTube Watcher</a>
+    </i>
 </p>
 <hr />
 
@@ -23,6 +29,8 @@
     <img src="https://contentautomation.s3.eu-central-1.amazonaws.com/detect_ingame.png" alt="Ingame Detection" width="1200"/></a>
 </p>
 
+## About
+This project implements a convolutional neural network architecture that can be trained to detect whether a given video clip is in-game or not. The network is trained using transfer learning by choosing one of the following architectures: ResNet50 (default), VGG16, InceptionV3
 
 ## Setup
 This project requires [Poetry](https://python-poetry.org/) to install the required dependencies.
