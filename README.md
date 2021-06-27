@@ -10,7 +10,10 @@
     <br />
     <i>Implementation of a Neural Network that can detect whether a video is Ingame or not </i>
     <br />
-<br />
+    <br />
+    <a href="https://youtu.be/TsAinKh8TRw">Video explanation (YouTube)</a>
+    <br />
+    <br />
     <i><b>Authors</b>:
         <a href="https://github.com/ChristianCoenen">Christian C.</a>,
         <a href="https://github.com/MorMund">Moritz M.</a>,
