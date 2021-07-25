@@ -11,7 +11,7 @@
     <i>Implementation of a Neural Network that can detect whether a video is Ingame or not </i>
     <br />
     <br />
-    <a href="https://youtu.be/TsAinKh8TRw">Video explanation (YouTube)</a>
+    <a href="https://youtu.be/Pk--a1i194c">Video explanation (YouTube)</a>
     <br />
     <br />
     <i><b>Authors</b>:
